@@ -1,0 +1,16 @@
+{
+    "platform": "laravel",
+    "app": "jenewspaper",
+    "laravel": {
+        "phpVersion": "8.2",
+        "configCache": true,
+        "routeCache": true,
+        "timezone": "Asia/Tehran"
+    },
+    "disks": [
+        {
+            "name": "jenewspaper-storage",
+            "mountTo": "storage"
+        }
+    ]
+}

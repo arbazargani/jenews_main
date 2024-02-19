@@ -1,0 +1,50 @@
+{
+    "levels": {
+        "1": {
+          "1": "1",
+          "2": "14",
+          "3": "15",
+          "4": "10"
+        },
+        "2": {
+            "1": "2",
+            "2": "16",
+            "3": "17",
+            "4": "9"
+        }
+    }
+}
+{
+    "1" => [
+        "1" => "1",
+        "2" => "14",
+        "3" => "15",
+        "4" => "10",
+    ],
+    "2" => [
+        "1" => "2",
+        "2" => "16",
+        "3" => "17",
+        "4" => "9"
+    ]
+}
+
+1>2,3,4|2>3,4,5,6
+
+
+                            <li>
+                                <a href="{{ route('Category > Archive', \App\Category::find((int) $menu_parents)->slug) }}">{{ \App\Category::find($menu_parents)->name }}</a>
+                                <div class="uk-navbar-dropdown uk-navbar-dropdown">
+                                    <div class="uk-navbar-dropdown-grid" uk-grid>
+                                        <div>
+                                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                                @foreach($menu_childs as $child)
+                                                    <li class="uk-margin-right"><a href="{{ route('Category > Archive', $child->slug) }}">{{ $child->name }}</a></li>
+                                                @endforeach
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a href="">{{ $childs->name }}</a></li>
