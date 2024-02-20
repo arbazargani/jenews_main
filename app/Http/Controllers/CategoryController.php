@@ -86,6 +86,13 @@ class CategoryController extends Controller
 
     public function Archive(Request $request, $slug) {
         $category = Category::whereSlug($slug)->firstOrFail();
+
+        // this query acts same as below query, but is more clear
+        // $PaginatedCategories = $category->article()
+        //     ->where('state', 1)
+        //     ->where('created_at', '<=', Carbon::now())
+        //     ->latest()->paginate(35);
+
         $PaginatedCategories = Article::where('category_id', $category->id)
             ->where('state', 1)
             ->where('created_at', '<=', Carbon::now())
