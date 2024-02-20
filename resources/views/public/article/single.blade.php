@@ -65,13 +65,14 @@
             $jalaliDate = new Verta($article[0]->created_at);
             $jalaliDate->timezone('Asia/Tehran');
             $jalaliDate = Verta::instance($article[0]->created_at);
-            $jalaliDate = Facades\Verta::instance($article[0]->created_at);
+            $jalaliDate = Facades\Verta::instance($article[0]->created_at)->format('Y/m/d H:i');
             $jalaliDate = explode(' ', $jalaliDate);
-            $jalaliDate = $jalaliDate[1] . ' ' . $jalaliDate[0];
+            //$jalaliDate = $jalaliDate[1] . ' ' . $jalaliDate[0];
         @endphp
         <div class="theme-background-green uk-margin-small-bottom" style="padding: 1% 2%; border-radius: 3px; height: 20px">
             <span class="uk-text-meta uk-text-bold uk-float-right" style="color: white !important;">کدخبر: {{ $article[0]->id }}</span>
-            <span class="uk-text-meta uk-text-bold uk-float-left" style="color: white !important; direction: ltr"><span uk-icon="icon: clock; ratio: 0.7"></span> {{ $jalaliDate }}</span>
+            <span class="uk-text-meta uk-text-bold uk-float-left" style="color: white !important; direction: ltr"><span uk-icon="icon: clock; ratio: 0.7"></span> {{ $jalaliDate[1] }}</span>
+            <span class="uk-text-meta uk-text-bold uk-float-left uk-margin-small-left" style="color: white !important; direction: ltr"><span uk-icon="icon: calendar; ratio: 0.7"></span> {{ $jalaliDate[0] }}</span>
         </div>
         <!-- Article Code -->
 

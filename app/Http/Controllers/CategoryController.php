@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -46,7 +47,7 @@ class CategoryController extends Controller
         return back();
     }
 
-    public function Archive(Request $request, $slug)
+    public function Archive_deprecated(Request $request, $slug)
     {
         // $category = Category::with('article')->where('slug', '=', $slug)->get();
         $category = Category::with('article')->where('slug', '=', $slug)->get();
@@ -80,6 +81,15 @@ class CategoryController extends Controller
 
         $PaginatedCategories = $paginatedItems;
 
+        return view('public.category.archive', compact('category', 'PaginatedCategories'));
+    }
+
+    public function Archive(Request $request, $slug) {
+        $category = Category::whereSlug($slug)->firstOrFail();
+        $PaginatedCategories = Article::where('category_id', $category->id)
+            ->where('state', 1)
+            ->where('created_at', '<=', Carbon::now())
+            ->latest()->paginate(35);
         return view('public.category.archive', compact('category', 'PaginatedCategories'));
     }
 

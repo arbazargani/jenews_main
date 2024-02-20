@@ -1,8 +1,8 @@
 @extends('public.template')
 
 @section('meta')
-    <title>{{ 'آرشیو دسته ' . $category[0]->name . ' ' . $settings['title_delimiter']->value . ' ' . $settings['website_name']->value }}</title>
-    <meta name="description" content="آرشیو دسته ‌{{ $category[0]->name }}">
+    <title>{{ 'آرشیو دسته ' . $category->name . ' ' . $settings['title_delimiter']->value . ' ' . $settings['website_name']->value }}</title>
+    <meta name="description" content="آرشیو دسته ‌{{ $category->name }}">
     <meta name="robots" content="index, follow">
 @endsection
 
@@ -11,14 +11,14 @@
 <ul class="uk-breadcrumb uk-margin-medium-right">
     <li><a href="{{ route('Home') }}">خانه</a></li>
     <li class="uk-disabled"><a>دسته</a></li>
-    <li><a href="{{ route('Category > Archive', $category[0]->slug) }}">{{ $category[0]->name }}</a></li>
+    <li><a href="{{ route('Category > Archive', $category->slug) }}">{{ $category->name }}</a></li>
     <li class="uk-disabled"><a>آرشیو</a></li>
 </ul>
 <!-- breadcrumbs -->
 
 <!-- content -->
 <div class="uk-article">
-            <h1 class="uk-text-lead">{{ 'آرشیو دسته: ' . $category[0]->name }}</h1>
+            <h1 class="uk-text-lead">{{ 'آرشیو دسته: ' . $category->name }}</h1>
             <hr>
             @if(count($PaginatedCategories))
             @foreach($PaginatedCategories as $article)
@@ -35,7 +35,7 @@
                 <div class="uk-container" uk-grid>
                     <div class="uk-width-1-3@m">
                         <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}">
-                            @if($category[0]->id == env('NEWSPAPER_CATEGORY_ID'))
+                            @if($category->id == env('NEWSPAPER_CATEGORY_ID'))
                             <img class="1 uk-border-rounded" src="{{ env('SITE_URL')."/repository/".strip_tags($article->content)."/frontpage_".strip_tags($article->content).".jpg" }}" style="width: auto;">
                             @elseif(strpos($article->cover, 'ghost.png') !== false || is_null($article->cover))
                             <img class="3 uk-border-rounded" src="/assets/image/ghost.png" style="width: auto">
@@ -85,7 +85,7 @@
             </div>
             @endif
 
-            @if($category[0]->id == env('NEWSPAPER_CATEGORY_ID'))
+            @if($category->id == env('NEWSPAPER_CATEGORY_ID'))
                 @php
                     $dir = 'repository';
                     $versions = new \App\Http\Controllers\NewspaperController();

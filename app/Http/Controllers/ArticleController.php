@@ -157,6 +157,7 @@ class ArticleController extends Controller
         $article->title = $this->NoArabic($request['title']);
         $article->content = $this->NoArabic($request['content']);
         $article->content = $this->NoRelatives($request['content']);
+        $article->category_id = is_null($request['categories']) ? 1 : $request['categories'][0];
 
         $article->rootitr = $this->NoArabic($request['rootitr']);
         $article->lead = $this->NoArabic($request['lead']);
@@ -405,6 +406,7 @@ class ArticleController extends Controller
         $article->title = $this->NoArabic($request['title']);
         $article->content = $this->NoArabic($request['content']);
         $article->content = $this->noRelatives($request['content']);
+        $article->category_id = is_null($request['categories']) ? 1 : $request['categories'][0];
 
         $article->rootitr = $this->NoArabic($request['rootitr']);
         $article->lead = $this->NoArabic($request['lead']);
