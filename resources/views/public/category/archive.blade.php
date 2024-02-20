@@ -36,14 +36,14 @@
                     <div class="uk-width-1-3@m">
                         <a class="uk-link-reset" href="{{ route('Article > Single', $article->slug) }}">
                             @if($category->id == env('NEWSPAPER_CATEGORY_ID'))
-                            <img class="1 uk-border-rounded" src="{{ env('SITE_URL')."/repository/".strip_tags($article->content)."/frontpage_".strip_tags($article->content).".jpg" }}" style="width: auto;">
+                            <img loading="lazy" class="1 uk-border-rounded" src="{{ env('SITE_URL')."/repository/".strip_tags($article->content)."/frontpage_".strip_tags($article->content).".jpg" }}" style="width: auto;">
                             @elseif(strpos($article->cover, 'ghost.png') !== false || is_null($article->cover))
-                            <img class="3 uk-border-rounded" src="/assets/image/ghost.png" style="width: auto">
+                            <img loading="lazy" class="3 uk-border-rounded" src="/assets/image/ghost.png" style="width: auto">
                             @else
                                 @if($article->type == 'video')
-                                    <img class="4 uk-border-rounded" src="/storage/{{ $article->cover }}" style="width: auto;">
+                                    <img loading="lazy" class="4 uk-border-rounded" src="/storage/{{ $article->cover }}" style="width: auto;">
                                 @else
-                                    <img class="4 uk-border-rounded" src="{{ $article->cover }}" style="width: auto;">
+                                    <img loading="lazy" class="4 uk-border-rounded" src="{{ $article->cover }}" style="width: auto;">
                                 @endif
                             @endif
                         </a>
@@ -96,7 +96,7 @@
                     <div class="article uk-margin uk-background-default uk-border-rounded uk-box-shadow-small uk-box-shadow-hover-large">
                         <div class="uk-container" uk-grid>
                             <div class="uk-width-1-3@m">
-                                <a class="uk-link-reset" href=""><img class="uk-border-rounded" src="/repository/{{ $version }}/frontpage_{{ $version }}.jpg" style="width: auto;"></a>
+                                <a class="uk-link-reset" href=""><img loading="lazy" class="uk-border-rounded" src="/repository/{{ $version }}/frontpage_{{ $version }}.jpg" style="width: auto;"></a>
                             </div>
                             <div class="uk-width-2-3@m">
                                 <p>

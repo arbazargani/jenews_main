@@ -211,3 +211,5 @@ Route::get('/cache/clear', function() {
 //Route::get('/tele', 'ArticleController@sendToTelegram');
 
 //Route::get('/archive/newspaper', 'HomeController@ArchiveEngine')->name('Archive > Newspaper');
+
+Route::get('/archive/corrector', [\App\Http\Controllers\HomeController::class, 'Test']);

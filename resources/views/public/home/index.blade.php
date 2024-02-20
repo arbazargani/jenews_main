@@ -70,7 +70,7 @@
                                 <div>
                                     <div class="uk-card-body" uk-grid>
                                         <div class="uk-width-1-3@m">
-                                            <a href="{{ route('Article > Single', $article->slug) }}"><img data-src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded lazy" target="_blank" uk-img></a>
+                                            <a href="{{ route('Article > Single', $article->slug) }}"><img loading="lazy" data-src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded lazy" target="_blank" uk-img></a>
                                         </div>
                                         <div class="uk-width-2-3@m">
                                             <div class="uk-card-badge uk-label uk-background-default uk-text-meta fa-num uk-box-shadow-medium">{{ $jalaliDate }}</div>
@@ -125,7 +125,7 @@
                         <div>
                             <div class="uk-card-body" uk-grid>
                                 <div class="uk-width-1-3@m">
-                                    <a href="{{ route('Article > Single', $article->slug) }}"><img data-src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded lazy" target="_blank" uk-img></a>
+                                    <a href="{{ route('Article > Single', $article->slug) }}"><img loading="lazy" data-src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded lazy" target="_blank" uk-img></a>
                                 </div>
                                 <div class="uk-width-2-3@m">
                                     <div class="uk-card-badge uk-label uk-background-default uk-text-meta fa-num uk-box-shadow-medium">{{ $jalaliDate }}</div>
@@ -178,7 +178,7 @@
                         <div>
                             <div class="uk-card-body" uk-grid>
                                 <div class="uk-width-1-3@m">
-                                    <a href="{{ route('Article > Single', $article->slug) }}"><img data-src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded lazy" target="_blank" uk-img></a>
+                                    <a href="{{ route('Article > Single', $article->slug) }}"><img loading="lazy" data-src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded lazy" target="_blank" uk-img></a>
                                 </div>
                                 <div class="uk-width-2-3@m">
                                     <div class="uk-card-badge uk-label uk-background-default uk-text-meta fa-num uk-box-shadow-medium">{{ $jalaliDate }}</div>
@@ -231,7 +231,7 @@
                         <div>
                             <div class="uk-card-body" uk-grid>
                                 <div class="uk-width-1-3@m">
-                                    <a href="{{ route('Article > Single', $article->slug) }}" target="_blank"><img data-src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded lazy" uk-img></a>
+                                    <a href="{{ route('Article > Single', $article->slug) }}" target="_blank"><img loading="lazy" data-src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded lazy" uk-img></a>
                                 </div>
                                 <div class="uk-width-2-3@m">
                                     <div class="uk-card-badge uk-label uk-background-default uk-text-meta fa-num uk-box-shadow-medium">{{ $jalaliDate }}</div>
@@ -284,7 +284,7 @@
                         <div>
                             <div class="uk-card-body" uk-grid>
                                 <div class="uk-width-1-3@m">
-                                    <a href="{{ route('Article > Single', $article->slug) }}" target="_blank"><img data-src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded lazy" uk-img></a>
+                                    <a href="{{ route('Article > Single', $article->slug) }}" target="_blank"><img loading="lazy" data-src="{{ $article->cover }}" alt="{{ $article->title }}" class="uk-border-rounded lazy" uk-img></a>
                                 </div>
                                 <div class="uk-width-2-3@m">
                                     <div class="uk-card-badge uk-label uk-background-default uk-text-meta fa-num uk-box-shadow-medium">{{ $jalaliDate }}</div>

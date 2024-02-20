@@ -256,16 +256,10 @@ class HomeController extends Controller
     public function Test()
     {
 
-        foreach ($wp_terms as $category) {
-            if ($category['id'] > 11685) {
-                $c = new Tag();
-                $c->id = $category['id'];
-                $c->name = $category['title'];
-                $c->slug = urldecode($category['slug']);
-                $c->save();
-            }
+        $acs = DB::table('article_category')->distinct('article_id')->get();
+        foreach($acs as $ac) {
+            Article::where('id', $ac->article_id)->update(['category_id' => $ac->category_id]);
         }
-
     }
 
     public function CompressorEngine ($src, $dest , $quality)
