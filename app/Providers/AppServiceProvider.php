@@ -110,7 +110,6 @@ class AppServiceProvider extends ServiceProvider
         } else {
             $leadArticle = Category::where('slug', 'سرمقاله')->with(['article' => function ($query) {
                 $query->where('cover', '!=', 'ghost.png')
-                    ->where('created_at', '>=', Carbon::today()->subDays(2))
                     ->where('created_at', '<=', Carbon::now())
                     ->limit(1)
                     ->latest();
