@@ -17,11 +17,14 @@
             @endphp
             @foreach($menu_structure as $menu_parent => $menu_child)
                 @if($menu_parent !== -1)
+                    @php
+                        $cat = \App\Models\Category::find((int) $menu_parent);
+                    @endphp
                     <li>
-                        @if(\App\Models\Category::find($menu_parent)->slug == 'آرشیو-روزنامه')
+                        @if($cat->slug == 'آرشیو-روزنامه')
                         <a style="color: white" href="{{ route('Archive > Newspaper') }}">آرشیو روزنامه</a>
                         @else
-                        <a style="color: white" href="{{ route('Category > Archive', \App\Models\Category::find((int) $menu_parent)->slug) }}">{{ \App\Models\Category::find($menu_parent)->name }}</a>
+                        <a style="color: white" href="{{ route('Category > Archive', $cat->slug) }}">{{ $cat->name }}</a>
                         @endif
                         <div class="uk-navbar-dropdown uk-navbar-dropdown">
                             <div class="uk-navbar-dropdown-grid" uk-grid>
@@ -71,7 +74,7 @@
 </nav>
 <!-- Responsive off-canvas menu -->
 <div id="responsive-menu" uk-offcanvas="overlay: true; mode: push">
-    <div class="uk-offcanvas-bar theme-background-green mobile-nav">
+    <div class="uk-offcanvas-bar mobile-nav">
         <button class="uk-offcanvas-close" type="button" uk-close></button>
         <br>
         <ul class="uk-nav uk-nav-default">
@@ -107,11 +110,10 @@
                 </ul>
             </li>
             @endif
-
             <hr>
             <div class="uk-container">
                 <p>
-                <a href="" target="_blank" class="uk-icon-button" uk-icon="instagram"></a>
+                    <a href="https://www.instagram.com/jahan.eghtesad" target="_blank" class="uk-icon-button" uk-icon="instagram"></a>
                 </p>
             </div>
         </ul>

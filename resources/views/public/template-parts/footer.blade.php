@@ -33,12 +33,13 @@
             <h4 class="uk-text-emphasis">آخرین اخبار</h4>
             <hr class="uk-divider-small">
             @php
-                $latest = \App\Models\Article::latest()->where('state', 1)->where('created_at', '<=', \Carbon\Carbon::now())->limit(3)->get();
+//                $latest = \App\Models\Article::latest()->where('state', 1)->where('created_at', '<=', \Carbon\Carbon::now())->limit(3)->get();
+                $latest = $latestArticles->take(3);
             @endphp
             <ul class="uk-list">
             @foreach($latest as $new)
-                <li>
-                    <span uk-icon="dash"></span> <a class="uk-link-reset" href="">{{ $new->title }}</a>
+                <li class="uk-text-truncate">
+                    <span uk-icon="dash"></span> <a class="uk-link-reset" href="{{ route('Article > Single', $new->slug) }}">{{ $new->title }}</a>
                 </li>
             @endforeach
             </ul>
@@ -84,8 +85,8 @@
 {{--                </div>--}}
                 <div class="uk-width-1-2@m">
                     <img src="/assets/image/primer-studio-mini.png" style="width: 24px; height: 24px; background: white; padding: 2px; border-radius: 3px; vertical-align: middle;" alt="Primer Studio">
-                    <a class="uk-link-reset uk-text-primary" href="https://primerstudio.io" target="_blank" rel="follow">
-                        <span style="font-size: 11px!important;">طراحی توسط استودیو پرایمر</span>
+                    <a class="uk-link-reset uk-text-primary" href="https://arbazargani.ir" target="_blank" rel="follow">
+                        <span style="font-size: 11px!important;">طراحی سایت خبری و خبرگزاری استودیو پرایمر</span>
                     </a>
                 </div>
             </div>
@@ -93,7 +94,7 @@
         <div class="uk-width-1-2@m">
             <a class="uk-float-left" href="{{ route('Rss') }}" target="_blank" class="uk-icon-link" uk-icon="rss"></a>
             <span class="uk-float-left"> &nbsp;&nbsp;|&nbsp;&nbsp;</span>
-            <a href="https://www.instagram.com/smtnewspaper/?hl=en" target="_blank" class="uk-float-left" uk-icon="instagram"></a>
+            <a href="https://www.instagram.com/jahan.eghtesad" target="_blank" class="uk-float-left" uk-icon="instagram"></a>
         </div>
     </div>
     <!-- sockets holder -->

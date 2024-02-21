@@ -7,6 +7,7 @@ use Facades\Verta;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use function Composer\Autoload\includeFile;
 use Illuminate\Support\Facades\Log;
@@ -280,16 +281,24 @@ class ArticleController extends Controller
     public function Show($slug, Request $request)
     {
 //        $article = Article::where('slug', '=', $slug)->get();
+        $article = Cache::get("article-$slug", function () use($slug) {
+            $article = Article::with('comment')->where('slug', '=', $slug)->get();
+            Cache::put("article-$slug", $article, now()->addMinutes(5));
+            return $article;
+        });
 
-        $article = Article::with('comment')->where('slug', '=', $slug)->get();
 
-        $relateds = $article[0]->tag->take(6)->first();
-        $relateds = (is_null($relateds)) ? [] : $relateds->article()
-            ->latest()
-            ->whereNot('id', $article[0]->id)
-            ->where('state', '1')
-            ->limit(6)
-            ->get();
+        $relateds = Cache::get("article-$slug-relateds", function () use($article, $slug) {
+            $relateds = $article[0]->tag->take(6)->first();
+            $related_articles = (is_null($relateds)) ? [] : $relateds->article()
+                ->latest()
+                ->whereNot('id', $article[0]->id)
+                ->where('state', '1')
+                ->limit(6)
+                ->get();
+            Cache::put("article-$slug-relateds", $related_articles, now()->addMinutes(5));
+            return $related_articles;
+        });
 
         if (count($article) && ($article[0]->state == 1) && $article[0]->category->first()->id == env('NEWSPAPER_CATEGORY_ID') ) {
             return view('public.article.newspaper', compact(['article']));

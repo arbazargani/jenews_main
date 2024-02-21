@@ -219,12 +219,18 @@ class HomeController extends Controller
 
     public function MenuStructureWithParents()
     {
-        $menu_structure = Category::where('id', '!=', '1')
-                                    ->where('parent', '!=', -1)
-                                    ->where('show_in_menu', '=', 1)
-                                    ->where('active', '=', 1)
-                                    ->get()->groupBy('parent');
-        return $menu_structure;
+        if (Cache::has('MenuStructureWithParents')) {
+            return Cache::get('MenuStructureWithParents');
+        } else {
+
+            $menu_structure = Category::where('id', '!=', '1')
+                ->where('parent', '!=', -1)
+                ->where('show_in_menu', '=', 1)
+                ->where('active', '=', 1)
+                ->get()->groupBy('parent');
+            Cache::put('MenuStructureWithParents', $menu_structure, now()->addDays(2));
+            return $menu_structure;
+        }
         /**
         if (Cache::has('menu_structure')) {
             return Cache::get('menu_structure');
@@ -239,7 +245,7 @@ class HomeController extends Controller
     public function MenuStructureWithoutParents()
     {
         if (Cache::has('single_categories')) {
-         return Cache::get('single_categories');
+            return Cache::get('single_categories');
         } else {
             $menu_structure = $this->MenuStructureWithParents();
             $used_categories = [1];
