@@ -51,8 +51,6 @@ class HomeController extends Controller
             Cache::put('level_one_articles', $level_one_articles, now()->addMinutes(5));
         }
 
-    //    dd($level_one_articles);
-
         if(Cache::has('homeTitle')) {
             $homeTitle = Cache::get('homeTitle');
         } else {
