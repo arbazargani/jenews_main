@@ -51,7 +51,7 @@ class HomeController extends Controller
             Cache::put('level_one_articles', $level_one_articles, now()->addMinutes(5));
         }
 
-//        dd($level_one_articles);
+    //    dd($level_one_articles);
 
         if(Cache::has('homeTitle')) {
             $homeTitle = Cache::get('homeTitle');
@@ -194,7 +194,7 @@ class HomeController extends Controller
         return DB::connection('mysql_sec')->select("SELECT * FROM `smtnw6_categories` WHERE `id` = $id")[0];
     }
 
-    public function GetCategoryLatest($slug, $limit = 3) {
+    public function GetCategoryLatest_backup($slug, $limit = 3) {
         if (Cache::has("latest-$slug")) {
             return Cache::get("latest-$slug");
         } else {
@@ -207,6 +207,24 @@ class HomeController extends Controller
             }
             ])->get();
             $data = (count($data) >= 1) ? $data[0]->article : false;
+            Cache::put("latest-$slug", $data, now()->addMinutes(5));
+            dd($data);
+            return $data;
+        }
+    }
+
+    public function GetCategoryLatest($slug, $limit = 3) {
+        if (Cache::has("latest-$slug")) {
+            return Cache::get("latest-$slug");
+        } else {
+            $category = Category::where('slug', "$slug")->first();
+            if (!is_null($category)) {
+                $data = Article::where('category_id', $category->id)
+                    ->where('cover', '!=', 'ghost.png')
+                    ->where('created_at', '>=', Carbon::today()->subDays(2))->where('created_at', '<=', Carbon::now())
+                    ->limit($limit)
+                    ->latest()->get();
+            }
             Cache::put("latest-$slug", $data, now()->addMinutes(5));
             return $data;
         }
